@@ -1,0 +1,81 @@
+<div class="flex">
+  <div class="m-auto">
+    <!-- Login Form -->
+    <mat-card>
+      <mat-card-title> Login </mat-card-title>
+      <mat-divider></mat-divider>
+
+      <mat-card-content>
+        <form #myform="ngForm">
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width" >
+                  <mat-label>username</mat-label>
+                  <input
+                    [(ngModel)]="user.username"
+                    name="username"
+                    #username="ngModel"
+                    matInput
+                    type="text"
+                    placeholder="enter username"
+                    required
+                  />
+                </mat-form-field>
+                <div
+                  *ngIf="
+                    username.invalid && (username.dirty || username.touched)
+                  "
+                  style="color: red"
+                >
+                  username must be valid!
+                </div>
+              </td>
+              <td>
+                <mat-form-field class="example-full-width" >
+                  <mat-label>password</mat-label>
+                  <input
+                    [(ngModel)]="user.password"
+                    name="password"
+                    #password="ngModel"
+                    matInput
+                    type="password"
+                    placeholder="enter password"
+                    required
+                  />
+                </mat-form-field>
+                <div
+                  *ngIf="
+                    password.invalid && (password.dirty || password.touched)
+                  "
+                  style="color: red"
+                >
+                  password must be valid!
+                </div>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </mat-card-content>
+
+      <mat-card-subtitle style="margin-top: 5%; color: red;"  >
+        {{ message }}
+      </mat-card-subtitle>
+
+      <mat-card-actions>
+        <button
+          [disabled]="myform.form.invalid"
+          (click)="login()"
+          color="accent"
+          type="submit"
+          mat-raised-button
+        >
+          <mat-spinner *ngIf="isLoading" diameter="35"></mat-spinner>
+          <span *ngIf="!isLoading">Login</span>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    <br />
+    <!-- {{ user | json }} -->
+  </div>
+</div>

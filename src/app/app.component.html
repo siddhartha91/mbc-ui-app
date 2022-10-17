@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="flex justify-content-between">
+    <a><img style="width: 100%; height:60px; margin-left: 0%; " src="../../assets/logo/logo-2.png" /></a>
+    <div>
+        <a *ngIf="isLoggedin()" routerLink="" mat-button>Home</a>
+        <a *ngIf="isLoggedin()"  routerLink="transactions" mat-button> New Transaction</a>
+        <a *ngIf="isLoggedin()" routerLink="transactions/view" mat-button>All Transactions</a>
+        <!-- <a *ngIf="isLoggedin()" routerLink="login" mat-button>Login</a> -->
+        <button *ngIf="isLoggedin()" mat-button style="cursor:pointer ;"  (click)="logout()">Logout</button>
+        <!-- <a *ngIf="!isLoggedin()" routerLink="register" mat-button>Register</a> -->
+    </div>
+</mat-toolbar>
+<!-- goto url -->
+<router-outlet></router-outlet>

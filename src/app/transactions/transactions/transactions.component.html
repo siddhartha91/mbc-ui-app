@@ -1,0 +1,70 @@
+<div class="flex">
+    <div class="m-auto">
+        <!-- Login Form -->
+        <mat-card>
+            <mat-card-title>
+                New Transactions
+            </mat-card-title>
+            <mat-divider></mat-divider>
+            <mat-card-subtitle style="margin-top: 5%;">
+                {{transactionsMsg}}
+            </mat-card-subtitle>
+
+            <mat-card-content>
+                <form #myForm = "ngForm">
+                    <table class="example-full-width" cellspacing="0">
+                        <tr>
+                            <td>
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>transactions</mat-label>
+                                    <input #transactions="ngModel" matInput type="text" [(ngModel)]="transactionsInfo.transactions" name="transactions" placeholder="enter transactions" required>
+                                </mat-form-field>
+                                <div *ngIf="transactions.invalid && (transactions.dirty || transactions.touched)" style="color: red;" >
+                                  Transaction must be valid!
+                                </div>
+                            </td>
+                            <td>
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>amount</mat-label>
+                                    <input #amount="ngModel" [(ngModel)]='transactionsInfo.amount' name="amount" matInput type="number" placeholder="enter amount" required>
+                                </mat-form-field>
+                                <div *ngIf="amount.invalid && (amount.dirty || amount.touched)" style="color: red;" >
+                                  Amount must be valid!
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>username</mat-label>
+                                    <input #transactionsBy="ngModel" [(ngModel)]='transactionsInfo.transactionsBy' name="transactionsBy" matInput type="text" placeholder="enter username" required>
+                                </mat-form-field>
+                                <div *ngIf="transactionsBy.invalid && (transactionsBy.dirty || transactionsBy.touched)" style="color: red;" >
+                                  Username must be valid!
+                                </div>
+                            </td>
+                            <td>
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>date</mat-label>
+                                    <input #transDate="ngModel" [(ngModel)]='transactionsInfo.transDate' name="transDate" matInput type="date" required>
+                                </mat-form-field>
+                                <div *ngIf="transDate.invalid && (transDate.dirty || transDate.touched)" style="color: red;" >
+                                  Date must be valid!
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </mat-card-content>
+
+            <mat-card-actions>
+                <button [disabled]="myForm.form.invalid"  color="accent" type="submit" (click)="createTransactions()"
+                    mat-raised-button>
+                    <span >Start Transactions</span>
+                </button>
+                <mat-spinner diameter="15"></mat-spinner>
+            </mat-card-actions>
+
+        </mat-card>
+
+    </div>

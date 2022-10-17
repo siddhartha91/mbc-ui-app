@@ -1,0 +1,69 @@
+<div>
+  <h1>All Transactions Details</h1>
+
+  <table mat-table [dataSource]="tranx_data" style="width: 100%">
+    <mat-text-column name="transId"></mat-text-column>
+
+    <ng-container matColumnDef="transactions">
+      <th mat-header-cell *matHeaderCellDef>Descriptions</th>
+      <td mat-cell *matCellDef="let data">
+        {{ data.transactions | titlecase }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef>Amount</th>
+      <td mat-cell *matCellDef="let data">
+        {{ data.amount | currency: "INR" }}
+      </td>
+    </ng-container>
+
+    <!-- <mat-text-column name="transaction_date"></mat-text-column> -->
+    <mat-text-column name="transactionsBy"></mat-text-column>
+
+    <ng-container matColumnDef="transDate">
+      <th mat-header-cell *matHeaderCellDef>Transactions Date</th>
+      <td mat-cell *matCellDef="let data">{{ data.transDate }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Transactions status</th>
+      <td mat-cell *matCellDef="let data" [ngSwitch]="data.status">
+        <span *ngSwitchCase="false" style="color: tomato">
+          <strong>Failed</strong>
+        </span>
+        <span *ngSwitchCase="true" style="color: green">
+          <strong>Success</strong>
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let data">
+        <button
+          mat-raised-button
+          color="accent"
+          [routerLink]="['/transactions/update', data.transId]"
+        >
+          Edit
+        </button>
+        <button
+          (click)="delete(data.transId)"
+          mat-raised-button
+          color="warn"
+          style="margin-left: 10px"
+        >
+          Delete
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tranx_col"></tr>
+    <tr mat-row *matRowDef="let rowData; columns: tranx_col"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons
+  aria-label="Select page of periodic elements">
+</mat-paginator>
+</div>

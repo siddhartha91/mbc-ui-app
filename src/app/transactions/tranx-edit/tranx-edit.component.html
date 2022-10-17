@@ -1,0 +1,58 @@
+<div class="flex">
+  <div class="m-auto">
+      <!-- Login Form -->
+      <mat-card>
+          <mat-card-title>
+              Edit Transactions
+          </mat-card-title>
+          <mat-divider></mat-divider>
+          <mat-card-subtitle style="margin-top: 5%;">
+              Send your money
+          </mat-card-subtitle>
+
+          <mat-card-content>
+              <form>
+                  <table class="example-full-width" cellspacing="0">
+                      <tr>
+                          <td>
+                              <mat-form-field class="example-full-width" appearance="fill">
+                                  <mat-label>transactions</mat-label>
+                                  <input matInput type="text" [(ngModel)]="transactionsInfo.transactions" name="transactions" placeholder="enter transactions" required>
+                              </mat-form-field>
+                          </td>
+                          <td>
+                              <mat-form-field class="example-full-width" appearance="fill">
+                                  <mat-label>amount</mat-label>
+                                  <input [(ngModel)]='transactionsInfo.amount' name="amount" matInput type="number" placeholder="enter amount" required>
+                              </mat-form-field>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <mat-form-field class="example-full-width" appearance="fill">
+                                  <mat-label>username</mat-label>
+                                  <input [(ngModel)]='transactionsInfo.transactionsBy' name="transactionsBy" matInput type="text" placeholder="enter username" required>
+                              </mat-form-field>
+                          </td>
+                          <td>
+                              <mat-form-field class="example-full-width" appearance="fill">
+                                  <mat-label>date</mat-label>
+                                  <input [(ngModel)]='transactionsInfo.transDate' name="transDate" matInput type="date" required>
+                              </mat-form-field>
+                          </td>
+                      </tr>
+                  </table>
+              </form>
+          </mat-card-content>
+
+          <mat-card-actions>
+              <button  color="accent" type="submit" (click)="updateTransactions()"
+                  mat-raised-button>
+                  <span >Update Transactions</span>
+              </button>
+              <mat-spinner diameter="15"></mat-spinner>
+          </mat-card-actions>
+
+      </mat-card>
+
+  </div>
